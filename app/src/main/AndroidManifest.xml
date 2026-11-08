@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Android 11 及以下蓝牙权限 -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+
+    <!-- BLE 兼容性：Android 6 及以上某些系统在扫描附近 BLE 设备时要求位置权限；本应用不读取 GPS 坐标。 -->
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Android 12+ BLE -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_SCAN" />
+
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_CONNECT" />
+
+    <!-- Android 12L 及以下：WallpaperManager 读取真实系统壁纸所需的读取权限。 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+
+    <!-- Android 13+ WallpaperManager.getDrawable() 官方要求的特殊访问权限；只在用户主动开启桌面壁纸时引导授权。 -->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
+    <!-- Android 13+ 通知 -->
+    <uses-permission
+        android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- 悬浮窗 -->
+    <uses-permission
+        android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!-- 前台服务 -->
+    <uses-permission
+        android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <!-- Android 14+ connectedDevice 前台服务 -->
+    <uses-permission
+        android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
+
+    <!-- BLE -->
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:label="心率监测"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.App"
+        android:icon="@drawable/app_icon"
+        android:roundIcon="@drawable/app_icon">
+
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:exported="true">
+
+            <intent-filter>
+
+                <action
+                    android:name="android.intent.action.MAIN" />
+
+                <category
+                    android:name="android.intent.category.LAUNCHER" />
+
+            </intent-filter>
+
+        </activity>
+
+        <!-- 心率悬浮窗前台服务 -->
+        <service
+            android:name=".HeartOverlayService"
+            android:exported="false"
+            android:stopWithTask="false"
+            android:foregroundServiceType="connectedDevice" />
+
+        <!-- 后台心率监测状态服务；离开页面/划掉任务时保持可见监测状态。 -->
+        <service
+            android:name=".HeartMonitoringService"
+            android:exported="false"
+            android:stopWithTask="false"
+            android:foregroundServiceType="connectedDevice" />
+
+        <!-- 唯一的 2×3 风格快捷桌面组件 -->
+        <receiver
+            android:name=".HeartControlWidgetProvider"
+            android:label="心率快捷控制"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.CONFIGURATION_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/heart_control_widget_info" />
+        </receiver>
+
+        <!-- 桌面点击只发广播和控制服务，不启动主界面。 -->
+        <receiver
+            android:name=".WidgetActionReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.shuangnian.widget.TOGGLE_MASTER" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

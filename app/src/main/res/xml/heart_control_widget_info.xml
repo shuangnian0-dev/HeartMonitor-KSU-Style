@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="250dp"
+    android:minHeight="165dp"
+    android:minResizeWidth="220dp"
+    android:minResizeHeight="145dp"
+    android:updatePeriodMillis="0"
+    android:initialLayout="@layout/heart_control_widget"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:description="@string/heart_control_widget_description" />

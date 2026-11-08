@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:clipChildren="true"
+    android:clipToPadding="true"
+    android:background="@drawable/widget_card_bg">
+
+    <LinearLayout
+        android:id="@+id/widget_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingStart="2dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="2dp">
+
+            <LinearLayout
+                android:id="@+id/widget_title_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="top|start"
+                android:paddingEnd="2dp">
+
+                <TextView
+                    android:id="@+id/widget_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="心率监测"
+                    android:textColor="#F1F7FC"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:fontFamily="sans" />
+
+                <TextView
+                    android:id="@+id/widget_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="监测：关 · 悬浮窗：关&#10;设备：等待连接"
+                    android:textColor="#8EB3C9"
+                    android:textSize="9sp"
+                    android:maxLines="2"
+                    android:ellipsize="end" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/widget_mascot"
+                android:layout_width="78dp"
+                android:layout_height="78dp"
+                android:layout_gravity="bottom|start"
+                android:contentDescription="角色装饰图"
+                android:scaleType="fitCenter"
+                android:src="@drawable/widget_mascot" />
+
+            <TextView
+                android:id="@+id/widget_brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="7dp"
+                android:layout_marginEnd="3dp"
+                android:text="HEART"
+                android:textColor="#47718A"
+                android:textSize="9sp"
+                android:letterSpacing="0.15" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.2"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:paddingStart="3dp">
+
+            <TextView
+                android:id="@+id/widget_power"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:gravity="center"
+                android:background="@drawable/widget_power_off"
+                android:text="⏻  一键开启"
+                android:textColor="#F2FBFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="一键开启或关闭应用中已启用的功能" />
+
+            <LinearLayout
+                android:id="@+id/widget_hr_panel"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="9dp"
+                android:paddingStart="11dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="5dp"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:background="@drawable/widget_hr_bg">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/widget_heart_icon"
+                        android:text="♥"
+                        android:textColor="#21DDD4"
+                        android:textSize="19sp"
+                        android:layout_marginEnd="4dp" />
+
+                    <TextView
+                        android:id="@+id/widget_hr"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="--"
+                        android:textColor="#DDF5FF"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:singleLine="true"
+                        android:includeFontPadding="false" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/widget_bpm_label"
+                        android:text="BPM"
+                        android:textColor="#23D7CE"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:id="@+id/widget_last_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="心率趋势"
+                        android:textColor="#7DA7C0"
+                        android:textSize="10sp"
+                        android:maxLines="1"
+                        android:ellipsize="end" />
+                    <TextView
+                        android:id="@+id/widget_last_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="等待真实数据"
+                        android:textColor="#6F94AE"
+                        android:textSize="8sp"
+                        android:maxLines="1"
+                        android:ellipsize="end" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/widget_trend"
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="1dp"
+                    android:contentDescription="最近心率趋势图"
+                    android:scaleType="fitXY" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

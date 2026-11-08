@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="heart_control_widget_description">一键控制心率监测与已启用的功能，查看最近心率</string>
+</resources>
